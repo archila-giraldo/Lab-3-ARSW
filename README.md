@@ -10,4 +10,7 @@ Las clases responsables son producer y consumer.
 #### Punto 2.
 Para reducir el consumo de CPU pusimos tiempos de espera entre consumos del consumidor (1 segundo) y redujimos ese 10% a casi un 1%
 ![image](https://user-images.githubusercontent.com/72176664/186425455-b003bd40-ed8f-4763-a297-36f57c6ff10a.png)
+#### Punto 3.
+Quitamos el tiempo de espera del productor, y los sincronizamos tanto productor como consumidor para que constantemente siguan produciendo y consumiendo sin gastar recursos de más
+
 
