@@ -5,8 +5,6 @@
  */
 package edu.eci.arst.concprg.prodcons;
 
-import sun.awt.image.IntegerComponentRaster;
-import sun.util.resources.ga.LocaleNames_ga;
 
 import java.util.ArrayList;
 import java.util.List;
