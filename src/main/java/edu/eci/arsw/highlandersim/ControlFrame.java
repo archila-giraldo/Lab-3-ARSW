@@ -87,18 +87,18 @@ public class ControlFrame extends JFrame {
         JButton btnPauseAndCheck = new JButton("Pause and check");
         btnPauseAndCheck.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
                 /*
 				 * COMPLETAR
                  */
                 int sum = 0;
                 for (Immortal im : immortals) {
+                    im.pausa();
                     sum += im.getHealth();
                 }
 
-                statisticsLabel.setText("<html>"+immortals.toString()+"<br>Health sum:"+ sum);
-                
-                
+                statisticsLabel.setText("<html>" + immortals.toString() + "<br>Health sum:" + sum);
+
+
 
             }
         });
@@ -111,7 +111,9 @@ public class ControlFrame extends JFrame {
                 /**
                  * IMPLEMENTAR
                  */
-
+                for(Immortal im: immortals){
+                    im.siga();
+                }
             }
         });
 
