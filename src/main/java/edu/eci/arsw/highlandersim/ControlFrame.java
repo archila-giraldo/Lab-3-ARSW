@@ -128,6 +128,16 @@ public class ControlFrame extends JFrame {
         numOfImmortals.setColumns(10);
 
         JButton btnStop = new JButton("STOP");
+        btnStop.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                for(Immortal im: immortals){
+                    im.stop();
+                }
+                immortals = null;
+                btnStart.setEnabled(true);
+            }
+        });
+
         btnStop.setForeground(Color.RED);
         toolBar.add(btnStop);
 

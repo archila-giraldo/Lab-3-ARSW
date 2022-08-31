@@ -30,31 +30,36 @@ public class Immortal extends Thread {
     }
 
     public void run() {
+            while (true) {
+                Immortal im;
+                this.pausado();
+                synchronized (immortalsPopulation) {
+                    int myIndex = immortalsPopulation.indexOf(this);
 
-        while (true) {
-            Immortal im;
-            this.pausado();
-            synchronized (immortalsPopulation) {
-                int myIndex = immortalsPopulation.indexOf(this);
+                    int nextFighterIndex = r.nextInt(immortalsPopulation.size());
 
-                int nextFighterIndex = r.nextInt(immortalsPopulation.size());
+                    //avoid self-fight
+                    if (nextFighterIndex == myIndex) {
+                        nextFighterIndex = ((nextFighterIndex + 1) % immortalsPopulation.size());
+                    }
 
-                //avoid self-fight
-                if (nextFighterIndex == myIndex) {
-                    nextFighterIndex = ((nextFighterIndex + 1) % immortalsPopulation.size());
+                    im = immortalsPopulation.get(nextFighterIndex);
+                    if (this.health > 0){
+                        this.fight(im);
+                    }
+                    else if (myIndex != -1){
+                        immortalsPopulation.remove(myIndex);
+                    }
+
+                }
+                try {
+                    Thread.sleep(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
 
-                im = immortalsPopulation.get(nextFighterIndex);
-
-                this.fight(im);
-            }
-            try {
-                Thread.sleep(1);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
 
-        }
 
     }
 
@@ -101,5 +106,9 @@ public class Immortal extends Thread {
     public synchronized void siga(){
         paused=false;
         notifyAll();
+    }
+
+    public void parar(){
+
     }
 }
